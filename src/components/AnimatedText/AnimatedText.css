@@ -12,11 +12,11 @@
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
  
 }
@@ -26,10 +26,11 @@
   font-size: 4.5rem;
   font-weight: normal;
   margin-bottom: 1rem;
-  color: #000000;
+  color:#dadada;
   position: relative;
   opacity: 1;
   width: 100%;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .animated-text-container {
@@ -67,11 +68,11 @@
 .animated-text-title {
   font-family: 'Plain', sans-serif;
   font-size: 3rem;
-  color: #000000;
+  color: #dadada;
   position: relative;
   white-space: nowrap;
   opacity: 1;
   background: transparent;
   width: 100%;
-  
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 } 
