@@ -67,13 +67,15 @@ const Navigation = () => {
           Proyectos
         </MagnetButton>
         <MagnetButton onClick={() => scrollToSection("Formación")}>
-          Estudios
+          Formacion
         </MagnetButton>
         <MagnetButton onClick={() => scrollToSection("quien-soy")}>
-          Quién Soy
+          Quien Soy
         </MagnetButton>
-        <MagnetButton onClick={() => scrollToSection("cv")}>
-          CV
+        
+        <MagnetButton onClick={() => scrollToSection("recruiters")}>
+          Recruiters
+          🤖
         </MagnetButton>
       </div>
     </nav>

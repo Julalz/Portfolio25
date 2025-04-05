@@ -22,8 +22,8 @@ function App() {
         <h2>Quién Soy</h2>
       </section>
 
-      <section id="cv" className="section">
-        <h2>CV</h2>
+      <section id="recruiters" className="section">
+        <h2>Recruiters</h2>
       </section>
     </div>
   );

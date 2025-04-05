@@ -8,6 +8,8 @@
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  font-family: 'ARCADECLASSIC', sans-serif;
+ 
 }
 
 .nav-container {
@@ -25,12 +27,13 @@
   color: #dadada;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.3s ease;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   perspective: 1000px;
   transform-style: preserve-3d;
+
 }
 
 .nav-button:hover {

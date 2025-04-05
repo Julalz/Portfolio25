@@ -24,7 +24,7 @@ const AnimatedText = () => {
 
   return (
     <div className="animated-text-wrapper">
-      <h1 className="animated-text-name">Hola, soy Julián Alzate </h1>
+      <h1 className="animated-text-name">Hola, soy Julian    Alzate </h1>
       <div className="animated-text-container">
         <div className={`animated-text-slide ${!isVisible ? 'hidden' : ''}`}>
           <span className="animated-text-title">{titles[currentIndex]}</span>

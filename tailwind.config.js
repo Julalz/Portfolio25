@@ -6,10 +6,7 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        plain: ['Plain', 'sans-serif'],
-        sans: ['Plain', 'sans-serif'],
-      },
+      
       animation: {
         first: "first 4s linear infinite",
         second: "second 6s linear infinite",

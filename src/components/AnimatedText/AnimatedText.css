@@ -18,11 +18,11 @@
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
- 
+  font-family: 'ARCADECLASSIC', sans-serif;
 }
 
 .animated-text-name {
-  font-family: 'Plain', sans-serif;
+  
   font-size: 4.5rem;
   font-weight: normal;
   margin-bottom: 1rem;
@@ -66,7 +66,7 @@
 }
 
 .animated-text-title {
-  font-family: 'Plain', sans-serif;
+ 
   font-size: 3rem;
   color: #dadada;
   position: relative;
