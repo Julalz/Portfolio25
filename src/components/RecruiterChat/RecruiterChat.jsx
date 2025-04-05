@@ -14,6 +14,38 @@ const RecruiterChat = () => {
     scrollToBottom();
   }, [messages]);
 
+  const handleDownloadCV = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/download-cv');
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'CV_Julian_Alzate.pdf';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Error al descargar el CV:', error);
+    }
+  };
+
+  const handleContactInfo = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/contact-info');
+      const data = await response.json();
+      const contactMessage = {
+        text: `Puedes contactar a Julian:\nTeléfono: ${data.phone}\nEmail: ${data.email}`,
+        sender: 'bot',
+        timestamp: new Date().toLocaleTimeString()
+      };
+      setMessages(prev => [...prev, contactMessage]);
+    } catch (error) {
+      console.error('Error al obtener información de contacto:', error);
+    }
+  };
+
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (!inputMessage.trim()) return;
@@ -28,7 +60,7 @@ const RecruiterChat = () => {
     setInputMessage('');
 
     try {
-      const response = await fetch('http://localhost:8000/api/chat', {
+      const response = await fetch('http://127.0.0.1:8000/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,10 +70,14 @@ const RecruiterChat = () => {
 
       const data = await response.json();
       
+      // Separar la respuesta base y las opciones
+      const [baseResponse, ...options] = data.response.split('\n\n');
+      
       const botMessage = {
-        text: data.response,
+        text: baseResponse,
         sender: 'bot',
-        timestamp: new Date().toLocaleTimeString()
+        timestamp: new Date().toLocaleTimeString(),
+        options: options.join('\n\n')
       };
 
       setMessages(prev => [...prev, botMessage]);
@@ -50,18 +86,40 @@ const RecruiterChat = () => {
     }
   };
 
+  const renderMessageContent = (message) => {
+    if (message.sender === 'bot' && message.options) {
+      return (
+        <div className="message-content">
+          <p>{message.text}</p>
+          <div className="options-container">
+            <button onClick={handleContactInfo} className="option-button">
+              Hablar con Julian
+            </button>
+            <button onClick={handleDownloadCV} className="option-button">
+              Descargar CV
+            </button>
+          </div>
+          <span className="timestamp">{message.timestamp}</span>
+        </div>
+      );
+    }
+    return (
+      <div className="message-content">
+        <p>{message.text}</p>
+        <span className="timestamp">{message.timestamp}</span>
+      </div>
+    );
+  };
+
   return (
     <div className="chat-container">
       <div className="chat-header">
-        <h3>Chat con Reclutadores</h3>
+        <h3>Hola soy el Cv interactivo de Julian Alzate</h3>
       </div>
       <div className="messages-container">
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.sender}`}>
-            <div className="message-content">
-              <p>{message.text}</p>
-              <span className="timestamp">{message.timestamp}</span>
-            </div>
+            {renderMessageContent(message)}
           </div>
         ))}
         <div ref={messagesEndRef} />
@@ -71,9 +129,9 @@ const RecruiterChat = () => {
           type="text"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
-          placeholder="Escribe tu mensaje..."
+          placeholder="Preguntame lo que quieras..."
         />
-        <button type="submit">Enviar</button>
+        <button type="submit">Enviar 🤖</button>
       </form>
     </div>
   );

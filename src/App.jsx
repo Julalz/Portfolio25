@@ -2,6 +2,7 @@ import "./App.css";
 import GradientBackground from "./components/GradientBackground";
 import AnimatedText from "./components/AnimatedText/AnimatedText";
 import Navigation from "./components/Navigation/Navigation";
+import RecruiterChat from "./components/RecruiterChat/RecruiterChat";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <h2>Proyectos</h2>
       </section>
 
-      <section id="estudios" className="section">
+      <section id="Formacion" className="section">
         <h2>Estudios</h2>
       </section>
 
@@ -23,7 +24,8 @@ function App() {
       </section>
 
       <section id="recruiters" className="section">
-        <h2>Recruiters</h2>
+        <h2></h2>
+        <RecruiterChat />
       </section>
     </div>
   );

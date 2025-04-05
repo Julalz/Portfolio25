@@ -9,10 +9,12 @@
 }
 
 .chat-header {
-  background: #2563eb;
+  background: #02091a;
   color: white;
   padding: 1rem;
   text-align: center;
+  font-family: "ARCADECLASSIC";
+  font-size: 1rem;
 }
 
 .messages-container {
@@ -86,5 +88,35 @@
 }
 
 .message-input button:hover {
+  background: #1d4ed8;
+}
+
+.options-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.option-button {
+  padding: 0.5rem 1rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 0.9rem;
+}
+
+.option-button:hover {
+  background: #1d4ed8;
+}
+
+.message.bot .option-button {
+  background: #2563eb;
+}
+
+.message.bot .option-button:hover {
   background: #1d4ed8;
 } 
