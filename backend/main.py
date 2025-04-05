@@ -9,16 +9,7 @@ load_dotenv()
 
 app = FastAPI()
 
-# Configuración de CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
-# Configuración de OpenAI
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 class Message(BaseModel):
@@ -27,7 +18,7 @@ class Message(BaseModel):
 @app.post("/api/chat")
 async def chat(message: Message):
     try:
-        # Aquí puedes personalizar el prompt según tu perfil
+        
         prompt = f"""
         Eres un asistente virtual que representa a Julian Alzate, un Developer Full Stack y IA Engineer.
         Responde de manera profesional y concisa a las preguntas sobre su experiencia y habilidades.
