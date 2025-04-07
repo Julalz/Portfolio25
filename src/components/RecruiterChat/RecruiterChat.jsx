@@ -16,7 +16,7 @@ const RecruiterChat = () => {
 
   const handleDownloadCV = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/download-cv');
+      const response = await fetch('https://backend-fastapi-portfolio-568h72nrh-julalzs-projects.vercel.app/api/download-cv');
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -33,7 +33,7 @@ const RecruiterChat = () => {
 
   const handleContactInfo = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/contact-info');
+      const response = await fetch('https://backend-fastapi-portfolio-568h72nrh-julalzs-projects.vercel.app/api/contact-info');
       const data = await response.json();
       const contactMessage = {
         text: `Puedes contactar a Julian:\nTeléfono: ${data.phone}\nEmail: ${data.email}`,
@@ -60,7 +60,7 @@ const RecruiterChat = () => {
     setInputMessage('');
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/chat', {
+      const response = await fetch('https://backend-fastapi-portfolio-568h72nrh-julalzs-projects.vercel.app/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
