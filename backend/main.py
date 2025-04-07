@@ -11,58 +11,77 @@ import json
 from supabase.client import create_client
 from datetime import datetime
 import asyncio
+import pathlib
 
-
+# Cargar variables de entorno
 load_dotenv()
 
-
+# Configuración de Supabase
 supabase_url = os.getenv("SUPABASE_URL")
 supabase_key = os.getenv("SUPABASE_KEY")
-supabase = create_client(supabase_url, supabase_key)
-     
+supabase = None
+
+try:
+    if not supabase_url or not supabase_key:
+        print("Error: SUPABASE_URL o SUPABASE_KEY no están configurados")
+    else:
+        supabase = create_client(supabase_url, supabase_key)
+        print("Conexión exitosa con Supabase")
+except Exception as e:
+    print(f"Error al conectar con Supabase: {str(e)}")
 
 app = FastAPI()
 
+# Configuración de CORS
+ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://tudominio.com",  # Reemplaza con tu dominio de producción
+    "https://www.tudominio.com"  # Reemplaza con tu dominio de producción
+]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# Obtener la ruta base del proyecto
+BASE_DIR = pathlib.Path(__file__).parent.parent.absolute()
+PUBLIC_DIR = BASE_DIR / "public"
+EXPORT_JSON_PATH = pathlib.Path(__file__).parent / "export.json"
 
-app.mount("/static", StaticFiles(directory="../public"), name="static")
+# Montar archivos estáticos
+app.mount("/static", StaticFiles(directory=str(PUBLIC_DIR)), name="static")
 
+# Configuración de OpenAI
 openai.api_key = os.getenv("OPENAI_API_KEY")
+if not openai.api_key:
+    print("Error: OPENAI_API_KEY no está configurada")
 
 async def increment_cv_downloads(from_chat: bool = False):
     try:
-       
-        
-        if supabase:
-            data = {
-                "cv_downloads": True,
-                "from_chat": str(from_chat)
-            }
+        if not supabase:
+            print("Error: Supabase no está configurado")
+            return None
             
-            try:
-                
-                result = supabase.table("cv_counts").insert(data).execute()
-                print(f"Resultado de la inserción: {result}")
-                return result
-            except Exception as insert_error:
-               
-                if hasattr(insert_error, '__dict__'):
-                    print(f"Atributos del error: {insert_error.__dict__}")
-                return None
+        data = {
+            "cv_downloads": True,
+            "from_chat": str(from_chat)
+        }
+        
+        try:
+            result = supabase.table("cv_counts").insert(data).execute()
+            print(f"Descarga de CV registrada exitosamente: {result}")
+            return result
+        except Exception as insert_error:
+            print(f"Error al insertar en cv_counts: {str(insert_error)}")
+            return None
     except Exception as e:
-        print(f"Error general: {str(e)}")
-        print(f"Tipo de error: {type(e)}")
+        print(f"Error general en increment_cv_downloads: {str(e)}")
         return None
-   
-       
 
 class CVManager:
     def __init__(self):
@@ -72,13 +91,12 @@ class CVManager:
 
     def _load_cv_data(self) -> Dict:
         try:
-            with open('export.json', 'r', encoding='utf-8') as file:
+            with open(EXPORT_JSON_PATH, 'r', encoding='utf-8') as file:
                 data = json.load(file)
                 print("CV cargado exitosamente")
                 return data
-               
         except FileNotFoundError:
-            print("Archivo export.json no encontrado. Usando datos por defecto.")
+            print(f"Archivo export.json no encontrado en: {EXPORT_JSON_PATH}")
             return {
                 "experiencia": [],
                 "habilidades": [],
@@ -88,22 +106,19 @@ class CVManager:
             }
         except json.JSONDecodeError as e:
             print(f"Error al decodificar el archivo JSON: {str(e)}")
-            return {
-                "experiencia": [],
-                "habilidades": [],
-                "educacion": [],
-                "proyectos": [],
-                "idiomas": []
-            }
+            return self._get_default_data()
         except Exception as e:
             print(f"Error inesperado al cargar el CV: {str(e)}")
-            return {
-                "experiencia": [],
-                "habilidades": [],
-                "educacion": [],
-                "proyectos": [],
-                "idiomas": []
-            }
+            return self._get_default_data()
+
+    def _get_default_data(self) -> Dict:
+        return {
+            "experiencia": [],
+            "habilidades": [],
+            "educacion": [],
+            "proyectos": [],
+            "idiomas": []
+        }
 
     def _create_embeddings(self) -> Dict:
         return self.cv_data
