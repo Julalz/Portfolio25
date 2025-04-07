@@ -36,8 +36,7 @@ app = FastAPI()
 ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://tudominio.com",  # Reemplaza con tu dominio de producción
-    "https://www.tudominio.com"  # Reemplaza con tu dominio de producción
+    "https://portfolio25-git-main-julalzs-projects.vercel.app"
 ]
 
 app.add_middleware(
