@@ -4,38 +4,63 @@
     "Desarrollador Full Stack con experiencia en el desarrollo y mantenimiento de aplicaciones web utilizando JavaScript, Node.js, y REST APIs",
     "Colaboración en equipo aplicando buenas prácticas y metodologías ágiles como SCRUM",
     "Desarrollo integral abarcando tanto el backend como el frontend con tecnologías como React, Node.js y FastAPI",
-    "Profesor de Git y GitHub en una empresa tecnológica, para la introduccion del sistema de versiones entre sus programadores"
+    "Profesor de Git y GitHub en una empresa tecnológica, para la introducción del sistema de versiones entre sus programadores"
   ],
   "habilidades": [
     "JavaScript, Node.js, React, CSS, HTML",
     "FastAPI, Python, SQL, NoSQL",
     "Trabajo en equipo, Comunicación efectiva, Creatividad, Adaptabilidad",
     "Metodologías ágiles (SCRUM), Control de versiones con Git y GitHub",
-    "Testing: Cypress, Selenium"
+    "Testing: Cypress, Selenium",
+    "Three.js que es un framework para crear gráficos 3D en el navegador"
   ],
   "softskills": [
     "Trabajo en equipo",
     "Comunicación efectiva",
     "Creatividad",
-    "Adaptabilidad"
+    "Adaptabilidad",
+    "Innovador",
+    "Autonomía",
+    "Proactividad",
+    "Trabajo bajo presión",
+    "Solución de problemas"
   ],
   "educacion": [
-    "Campus Dual TIC: AI Engineering - Programas avanzados en arquitectura de microservicios y desarrollo ágil (Octubre 2024)",
+    "Campus Dual TIC: Bootcamp AI Engineering",
+    "Programas avanzados en arquitectura de microservicios y desarrollo ágil (Octubre 2024)",
     "Google AdWords y sus aplicaciones publicitarias (Enero 2024)",
     "Three.js - Desarrollo 3D en el navegador (Agosto 2023)",
-    "Hack a Boss - Programación Web Full Stack (Enero-Julio 2023)",
+    "Hack a Boss - Bootcamp Programación Web Full Stack (Enero-Julio 2023)",
     "Neetwork Business School - Derecho Informático Internacional (Enero 2023)",
     "Neetwork Business School - Gestión y Diseño Wordpress (Diciembre 2022)",
     "Iniciación a la Creación de Páginas Web (Diciembre 2022)"
   ],
   "proyectos": [
-    "Este porfolio web fue creado con React, Css, FastAPI, Python, Supabase",
-    "Desarrollo de aplicación web Full Stack, abarcando tanto backend como frontend utilizando React, Node.js y FastAPI",
-    "Proyecto final 'Fm de web, Xtreme' con implementación en la nube utilizando React y Node.js"
+    "Este portfolio web (es decir, yo) fue creado con React, CSS, FastAPI, Python, Supabase, con el CV en un sistema Retrieval-Augmented Generation (RAG), desplegado en Vercel",
+    "Desarrolló una aplicación web Full Stack (Xtreme), abarcando tanto backend como frontend utilizando React, Node.js y mySQL CSS, con gestión de usuarios e imágenes por user-admin",
+    "FacturIA es una aplicación web que permite a los usuarios guardar en sus bases de datos de Supabase sus servicios de manera automática y sencilla, evitando la tediosa tarea de tener que escribirlos manualmente y cometer fallos de tipeo, desplegando en Google Cloud"
   ],
   "idiomas": [
     "Español (Nativo)",
-    "Inglés (C1)",
+    "Inglés (C1), capaz de hablar, leer, escribir. Vivió en Manchester 5 años",
     "Portugués (Básico)"
+  ],
+  "lugar": [
+    "Lugar de nacimiento: Medellín, Colombia",
+    "Lugar de residencia actual: Vigo, España"
+  ],
+  "preferencias": [
+    "Horario flexible",
+    "Disponibilidad en remoto o en Vigo, España"
+  ],
+  "intereses": [
+    "Programación, desarrollo web, inteligencia artificial, videojuegos, cine, series, música, deporte, viajar, conocer gente, aprender cosas nuevas"
+  ],
+  "links": [
+    "LinkedIn: https://www.linkedin.com/in/julianalz/",
+    "GitHub: https://github.com/Julalz"
+  ],
+  "lugares donde ha vivido": [
+    "Vigo, Manchester, Madrid, Las Palmas"
   ]
 }

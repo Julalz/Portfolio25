@@ -13,10 +13,10 @@ from datetime import datetime
 import asyncio
 import pathlib
 
-# Cargar variables de entorno
+
 load_dotenv()
 
-# Configuración de Supabase
+
 supabase_url = os.getenv("SUPABASE_URL")
 supabase_key = os.getenv("SUPABASE_KEY")
 supabase = None
@@ -32,11 +32,14 @@ except Exception as e:
 
 app = FastAPI()
 
-# Configuración de CORS
+
 ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Dirección local de desarrollo
-    "https://portfolio25-git-main-julalzs-projects.vercel.app"  # Dirección de producción
+    "http://localhost:5174", 
+    "http://localhost:5173",
+    "https://portfolio25-git-main-julalzs-projects.vercel.app",
+    "https://julianalzateportfolio.vercel.app", 
 ]
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -46,25 +49,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Obtener la ruta base del proyecto
+
 BASE_DIR = pathlib.Path(__file__).parent.parent.absolute()
 PUBLIC_DIR = BASE_DIR / "public"
 EXPORT_JSON_PATH = pathlib.Path(__file__).parent / "export.json"
 
-# Montar archivos estáticos
-app.mount("/static", StaticFiles(directory=str(PUBLIC_DIR)), name="static")
 
-# Configuración de OpenAI
+app.mount("/public", StaticFiles(directory=str(PUBLIC_DIR)), name="public")
+
+
 openai.api_key = os.getenv("OPENAI_API_KEY")
 if not openai.api_key:
     print("Error: OPENAI_API_KEY no está configurada")
 
 async def increment_cv_downloads(from_chat: bool = False):
     try:
-        if not supabase:
-            print("Error: Supabase no está configurado")
-            return None
-            
         data = {
             "cv_downloads": True,
             "from_chat": str(from_chat)
@@ -137,8 +136,29 @@ class CVManager:
             "estudio": "educacion",
             "formación": "educacion",
             "proyecto": "proyectos",
-            "trabajo": "proyectos"
+            "trabajo": "proyectos",
+            "lugares": "lugares donde ha vivido",
+            "vivido": "lugares donde ha vivido",
+            "vivido": "lugares donde ha vivido",
+            "residencia": "lugares donde ha vivido",
+            "nacimiento": "lugar",
+            "ciudad": "lugar",
+            "preferencia": "preferencias",
+            "intereses": "intereses",
+            "link": "links",
+            "linkedin": "links",
+            "github": "links",
+            "ubicación": "lugar",
+            "domicilio": "lugar",
+            "madrid": "lugares donde ha vivido",
+            "vigo": "lugares donde ha vivido",
+            "manchester": "lugares donde ha vivido",
+            "las palmas": "lugares donde ha vivido",
+            "español": "idiomas",
+            "inglés": "idiomas",
+            "portugués": "idiomas"
         }
+        
         
         relevant_category = None
         for keyword, category in category_keywords.items():
@@ -191,7 +211,7 @@ class CVManager:
     def get_response(self, query: str) -> str:
         self.question_count += 1
         
-        # Verificar si es una solicitud de descarga del CV
+        
         if self.question_count > 2 and query.strip() == "2":
             asyncio.create_task(increment_cv_downloads(from_chat=True))
             return "¡Perfecto! El CV se descargará en un momento. ¿Hay algo más en lo que pueda ayudarte?"
@@ -260,39 +280,44 @@ async def chat(message: Message):
 @app.get("/api/download-cv")
 async def download_cv():
     try:
-    
-        pdf_path = os.path.join(os.path.dirname(__file__), "..", "public", "cv julian dev&ia.pdf")
-      
-        if not os.path.exists(pdf_path):
-            print("ERROR: No se encontró el archivo PDF")
-            raise FileNotFoundError("No se pudo encontrar el archivo PDF del CV")
-        
        
-        await increment_cv_downloads(from_chat=False)
-       
-        
+        pdf_filename = "cv_julian_dev_ia.pdf"
+        file_path = os.path.join("public", pdf_filename)
         return FileResponse(
-            path=pdf_path,
+            path=file_path,
             filename="CV_Julian_Alzate.pdf",
             media_type="application/pdf"
         )
+    
+    except FileNotFoundError as e:
+        print(f"FileNotFoundError: {str(e)}")
+        raise HTTPException(status_code=404, detail=f"Archivo no encontrado: {str(e)}")
+    
     except Exception as e:
-       
+        print(f"Error al descargar el CV: {str(e)}")
         raise HTTPException(
-            status_code=500, 
+            status_code=500,
             detail=f"Error al descargar el CV: {str(e)}"
         )
- 
+@app.post("/api/increment-cv-downloads")
+async def increment_cv_downloads_from_chat(data: dict):
+    try:
+       
+        from_chat = data.get("from_chat", True)
+        await increment_cv_downloads(from_chat=from_chat)
+        return {"message": "Interacción de descarga registrada exitosamente."}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al registrar la interacción: {str(e)}")
 
 @app.get("/api/contact-info")
 async def get_contact_info():
     try:
         return {
-            "phone": "+34 123 456 789", 
-            "email": "julian@example.com"  
+            "phone": "+34 633 32 66 22", 
+            "email": "julian942@hotmail.com"
         }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"Ha ocurrido un error en el servidor: {str(e)}")
 
 if __name__ == "__main__":
     import uvicorn
