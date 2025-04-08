@@ -34,9 +34,8 @@ app = FastAPI()
 
 # Configuración de CORS
 ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "https://portfolio25-git-main-julalzs-projects.vercel.app"
+    "http://localhost:5173",  # Dirección local de desarrollo
+    "https://portfolio25-git-main-julalzs-projects.vercel.app"  # Dirección de producción
 ]
 
 app.add_middleware(
