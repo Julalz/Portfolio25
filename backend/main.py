@@ -33,21 +33,21 @@ except Exception as e:
 app = FastAPI()
 
 
-ALLOWED_ORIGINS = [
-    "https://julianalzateportfolio.vercel.app",  
-    "https://portfolio25-git-main-julalzs-projects.vercel.app",  
-    "http://localhost:5174", 
-    "http://localhost:5173",  
-]
+# ALLOWED_ORIGINS = [
+#     "https://julianalzateportfolio.vercel.app",  
+#     "https://portfolio25-git-main-julalzs-projects.vercel.app",  
+#     "http://localhost:5174", 
+#     "http://localhost:5173",  
+# ]
 
 
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,  
+    allow_origins=["https://julianalzateportfolio.vercel.app"],  # Solo permitimos el frontend de producción
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],  # Métodos permitidos
-    allow_headers=["*"],  # Permitir todas las cabeceras
+    allow_methods=["POST", "OPTIONS"],  # Solo permitimos POST y OPTIONS
+    allow_headers=["Content-Type"],  # Solo permitimos Content-Type
 )
 
 
@@ -272,19 +272,25 @@ class Message(BaseModel):
 @app.post("/api/chat")
 async def chat(message: Message):
     try:
-        response = cv_manager.get_response(message.message)
-        return JSONResponse(
-        content={},
-        headers={
-            "Access-Control-Allow-Origin": "https://julianalzateportfolio.vercel.app",  # Permite el origen específico
-            "Access-Control-Allow-Methods": "POST, OPTIONS",  # Métodos permitidos
-            "Access-Control-Allow-Headers": "Content-Type",  # Cabeceras permitidas
-        }
-    )
-    
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        # Guardamos el mensaje en Supabase
+        response_from_supabase = cv_manager.save_to_supabase(message.message)
+        print(f"Respuesta de Supabase: {response_from_supabase}")
 
+        # Asegurémonos de que la respuesta esté en el formato correcto
+        response_text = cv_manager.get_response(message.message)
+        print(f"Respuesta del bot: {response_text}")  # Verifica que esta respuesta sea válida
+
+        return JSONResponse(
+            content={"response": response_text},
+            headers={
+                "Access-Control-Allow-Origin": "https://julianalzateportfolio.vercel.app",
+                "Access-Control-Allow-Methods": "POST, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type",
+            }
+        )
+    except Exception as e:
+        print(f"Error: {e}")  # Para depurar
+        raise HTTPException(status_code=500, detail=str(e))
 @app.get("/api/download-cv")
 async def download_cv():
     try:
