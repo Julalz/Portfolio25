@@ -68,17 +68,17 @@ const RecruiterChat = () => {
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (!inputMessage.trim()) return;
-
+  
     const newMessage = {
       text: inputMessage,
       sender: 'user',
       timestamp: new Date().toLocaleTimeString()
     };
-
+  
     setMessages(prev => [...prev, newMessage]);
     setInputMessage('');
     setLoading(true); // Activa el spinner
-
+  
     try {
       const response = await fetch('https://backend-fastapi-portfolio.vercel.app/api/chat', {
         method: 'POST',
@@ -87,14 +87,14 @@ const RecruiterChat = () => {
         },
         body: JSON.stringify({ message: inputMessage })
       });
-
+  
       if (!response.ok) {
         throw new Error('Error en la respuesta del servidor');
       }
-
+  
       const data = await response.json();
-
-      // Verifica si 'response' está en el formato esperado
+  
+      // Verifica si 'response' está presente
       if (data && data.response) {
         const [baseResponse, ...options] = data.response.split('\n\n');
         const botMessage = {
@@ -103,7 +103,7 @@ const RecruiterChat = () => {
           timestamp: new Date().toLocaleTimeString(),
           options: options.join('\n\n')
         };
-
+  
         setMessages(prev => [...prev, botMessage]);
       } else {
         console.error("Respuesta no válida del backend:", data);
@@ -113,7 +113,7 @@ const RecruiterChat = () => {
     } finally {
       setLoading(false); // Desactiva el spinner
     }
-};
+  };
 
   const renderMessageContent = (message) => {
     if (message.sender === 'bot' && message.options) {
