@@ -34,19 +34,20 @@ app = FastAPI()
 
 
 ALLOWED_ORIGINS = [
+    "https://julianalzateportfolio.vercel.app",  
+    "https://portfolio25-git-main-julalzs-projects.vercel.app",  
     "http://localhost:5174", 
-    "http://localhost:5173",
-    "https://portfolio25-git-main-julalzs-projects.vercel.app",
-    "https://julianalzateportfolio.vercel.app", 
+    "http://localhost:5173",  
 ]
+
 
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+    allow_origins=ALLOWED_ORIGINS,  
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],  # Métodos permitidos
+    allow_headers=["*"],  # Permitir todas las cabeceras
 )
 
 
@@ -272,7 +273,14 @@ class Message(BaseModel):
 async def chat(message: Message):
     try:
         response = cv_manager.get_response(message.message)
-        return {"response": response}
+        return JSONResponse(
+        content={},
+        headers={
+            "Access-Control-Allow-Origin": "https://julianalzateportfolio.vercel.app",  # Permite el origen específico
+            "Access-Control-Allow-Methods": "POST, OPTIONS",  # Métodos permitidos
+            "Access-Control-Allow-Headers": "Content-Type",  # Cabeceras permitidas
+        }
+    )
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

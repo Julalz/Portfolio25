@@ -5,6 +5,7 @@ const RecruiterChat = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const messagesEndRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -16,24 +17,42 @@ const RecruiterChat = () => {
 
   const handleDownloadCV = async () => {
     try {
-      const response = await fetch('https://backend-fastapi-portfolio-568h72nrh-julalzs-projects.vercel.app/api/download-cv');
+      
+      const response = await fetch('https://backend-fastapi-portfolio.vercel.app/api/download-cv');
+      
+      
+      if (!response.ok) {
+        throw new Error(`Error al descargar el CV: ${response.statusText}`);
+      }
+  
       const blob = await response.blob();
+     
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
       a.download = 'CV_Julian_Alzate.pdf';
+  
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
+      await fetch('https://backend-fastapi-portfolio.vercel.app/api/increment-cv-downloads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ from_chat: true })  
+    });
+
+      console.log('CV descargado exitosamente'); 
     } catch (error) {
+    
       console.error('Error al descargar el CV:', error);
+      alert('Hubo un problema al intentar descargar el CV. Intenta nuevamente más tarde.');
     }
   };
 
   const handleContactInfo = async () => {
     try {
-      const response = await fetch('https://backend-fastapi-portfolio-568h72nrh-julalzs-projects.vercel.app/api/contact-info');
+      const response = await fetch('https://backend-fastapi-portfolio.vercel.app/contact-info');
       const data = await response.json();
       const contactMessage = {
         text: `Puedes contactar a Julian:\nTeléfono: ${data.phone}\nEmail: ${data.email}`,
@@ -49,40 +68,41 @@ const RecruiterChat = () => {
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (!inputMessage.trim()) return;
-
+  
     const newMessage = {
       text: inputMessage,
       sender: 'user',
       timestamp: new Date().toLocaleTimeString()
     };
-
+  
     setMessages(prev => [...prev, newMessage]);
     setInputMessage('');
-
+    setLoading(true); // Activa el spinner
+  
     try {
-      const response = await fetch('https://backend-fastapi-portfolio-568h72nrh-julalzs-projects.vercel.app/api/chat', {
+      const response = await fetch('https://backend-fastapi-portfolio.vercel.app/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ message: inputMessage })
       });
-
+  
       const data = await response.json();
-      
-      // Separar la respuesta base y las opciones
+  
       const [baseResponse, ...options] = data.response.split('\n\n');
-      
       const botMessage = {
         text: baseResponse,
         sender: 'bot',
         timestamp: new Date().toLocaleTimeString(),
         options: options.join('\n\n')
       };
-
+  
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
       console.error('Error al enviar mensaje:', error);
+    } finally {
+      setLoading(false); // Desactiva el spinner
     }
   };
 
@@ -93,7 +113,7 @@ const RecruiterChat = () => {
           <p>{message.text}</p>
           <div className="options-container">
             <button onClick={handleContactInfo} className="option-button">
-              Hablar con Julian
+              Datos de contacto de Julian
             </button>
             <button onClick={handleDownloadCV} className="option-button">
               Descargar CV
@@ -133,8 +153,9 @@ const RecruiterChat = () => {
         />
         <button type="submit">Enviar 🤖</button>
       </form>
+      {loading && <div className="loading-spinner">Cargando...</div>}
     </div>
   );
 };
 
-export default RecruiterChat; 
+export default RecruiterChat;
