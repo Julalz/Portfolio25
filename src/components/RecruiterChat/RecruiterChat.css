@@ -57,7 +57,7 @@
 
 .timestamp {
   font-size: 0.75rem;
-  color: #64748b;
+  color: #333b479d;
   margin-top: 0.25rem;
 }
 
@@ -119,10 +119,17 @@
 
 .message.bot .option-button:hover {
   background: #1d4ed8;
-} 
+}
 
 .loading-spinner {
   text-align: center;
   font-size: 1.2em;
   color: #888;
+}
+.options-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
