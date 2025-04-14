@@ -2,28 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #dadada;
-  text-align: center;
-  z-index: 20;
-  margin-top: 2rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .section {
-  min-height: 100vh;
+  min-height: 90vh;
   flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
   position: relative;
   z-index: 10;
   background: rgba(255, 255, 255, 0.1);
@@ -33,7 +17,9 @@ h2 {
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
-#recruiters {
-  cursor: "🤖";
+.chat-description {
+  width: 50%;
+  display: flex;
+  color: rgb(204, 204, 203);
+  text-align: center;
 }

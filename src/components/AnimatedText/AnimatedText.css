@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 400px;
-  /* min-height: 100vh; */
+  letter-spacing: 2px;
   margin-top: 100px;
   z-index: 20;
   text-align: center;
@@ -18,15 +18,14 @@
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-  font-family: 'ARCADECLASSIC', sans-serif;
+  font-family: "ARCADECLASSIC", sans-serif;
 }
 
 .animated-text-name {
-  
   font-size: 4.5rem;
   font-weight: normal;
   margin-bottom: 1rem;
-  color:#dadada;
+  color: #dadada;
   position: relative;
   opacity: 1;
   width: 100%;
@@ -66,7 +65,6 @@
 }
 
 .animated-text-title {
- 
   font-size: 3rem;
   color: #dadada;
   position: relative;
@@ -75,4 +73,4 @@
   background: transparent;
   width: 100%;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-} 
+}

@@ -12,7 +12,12 @@ function App() {
       <Navigation />
       <AnimatedText />
       <section id="recruiters" className="section">
-        <h2></h2>
+        <p className="chat-description">
+          Este chat usa inteligencia artificial para responder preguntas sobre
+          mi perfil profesional. Está conectado a mi CV y puede darte info clara
+          y directa sobre mi experiencia, habilidades, proyectos y más. Ideal si
+          querés conocerme sin leer todo el documento.
+        </p>
         <RecruiterChat />
       </section>
       <section id="proyectos" className="section">

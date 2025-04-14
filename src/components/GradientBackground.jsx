@@ -77,4 +77,4 @@ const GradientBackground = () => {
   );
 };
 
-export default GradientBackground; 
+export default GradientBackground;
