@@ -12,10 +12,11 @@
 
 @font-face {
   font-family: ARCADECLASSIC;
-  src: url("/fonts/arcadeclassic/ARCADECLASSIC.TTF") format('opentype');
+  src: url("/fonts/arcadeclassic/ARCADECLASSIC.TTF") format("opentype");
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;

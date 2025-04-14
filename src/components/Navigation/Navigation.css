@@ -8,8 +8,7 @@
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  font-family: 'ARCADECLASSIC', sans-serif;
- 
+  font-family: "ARCADECLASSIC", sans-serif;
 }
 
 .nav-container {
@@ -33,7 +32,6 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   perspective: 1000px;
   transform-style: preserve-3d;
-
 }
 
 .nav-button:hover {
@@ -50,4 +48,4 @@
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
   }
-} 
+}

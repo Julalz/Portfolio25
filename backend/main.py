@@ -50,11 +50,11 @@ PUBLIC_DIR = BASE_DIR / "public"
 EXPORT_JSON_PATH = BASE_DIR / "export.json"
 
 # Crear el directorio public si no existe
-try:
-    PUBLIC_DIR.mkdir(exist_ok=True)
-    print(f"Directorio public creado/verificado en: {PUBLIC_DIR}")
-except Exception as e:
-    print(f"Error al crear el directorio public: {str(e)}")
+# try:
+#     PUBLIC_DIR.mkdir(exist_ok=True)
+#     print(f"Directorio public creado/verificado en: {PUBLIC_DIR}")
+# except Exception as e:
+#     print(f"Error al crear el directorio public: {str(e)}")
 
 if PUBLIC_DIR.exists():
     app.mount("/backend/public", StaticFiles(directory=str(PUBLIC_DIR)), name="public")
@@ -229,7 +229,7 @@ class CVManager:
             )
 
         prompt = f"""
-        Eres un asistente virtual que representa a Julian Alzate.
+        Eres un asistente virtual que representa a Julian Alzate, actuas como si fuera él.
         Basándote EXCLUSIVAMENTE en la siguiente información del CV:
 
         {context}
@@ -238,7 +238,7 @@ class CVManager:
         {query}
 
         Si la pregunta está relacionada con idiomas, experiencia, habilidades, educación o proyectos, responde usando SOLO la información proporcionada.
-        Si la pregunta no está relacionada con estos temas, responde cortésmente indicando que solo puedes responder preguntas relacionadas con el CV de Julian.
+        Si la pregunta no está relacionada con estos temas, responde cortésmente indicando que solo puedes responder preguntas relacionadas con el CV de Julian y que fuiste programada para ayudar al Recruiter.
         """
 
         response = openai.ChatCompletion.create(

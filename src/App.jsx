@@ -3,6 +3,7 @@ import GradientBackground from "./components/GradientBackground";
 import AnimatedText from "./components/AnimatedText/AnimatedText";
 import Navigation from "./components/Navigation/Navigation";
 import RecruiterChat from "./components/RecruiterChat/RecruiterChat";
+import Slider from "./components/Slider-projects/Slider-projects";
 
 function App() {
   return (
@@ -10,9 +11,12 @@ function App() {
       <GradientBackground />
       <Navigation />
       <AnimatedText />
-      
+      <section id="recruiters" className="section">
+        <h2></h2>
+        <RecruiterChat />
+      </section>
       <section id="proyectos" className="section">
-        <h2>Proyectos</h2>
+        <Slider />
       </section>
 
       <section id="Formacion" className="section">
@@ -21,11 +25,6 @@ function App() {
 
       <section id="quien-soy" className="section">
         <h2>Quién Soy</h2>
-      </section>
-
-      <section id="recruiters" className="section">
-        <h2></h2>
-        <RecruiterChat />
       </section>
     </div>
   );
