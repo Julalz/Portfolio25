@@ -161,6 +161,12 @@ class CVManager:
             "español": "idiomas",
             "inglés": "idiomas",
             "portugués": "idiomas",
+            "redes neuronales": "conocimientos_tecnicos_ampliados",
+            "machine learning": "conocimientos_tecnicos_ampliados",
+            "big data": "conocimientos_tecnicos_ampliados",
+            "langchain": "conocimientos_tecnicos_ampliados",
+            "integración frontend y backend": "conocimientos_tecnicos_ampliados",
+            "motivación IA engineer": "conocimientos_tecnicos_ampliados"
         }
 
         relevant_category = None
