@@ -56,30 +56,33 @@ const Navigation = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const navHeight = document.querySelector(".navigation").offsetHeight;
+      element.style.scrollMarginTop = `${navHeight}px`;
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
   return (
     <nav className="navigation">
       <div className="nav-container">
+        <MagnetButton onClick={() => scrollToSection("inicio")}>
+          Inicio
+        </MagnetButton>
         <MagnetButton onClick={() => scrollToSection("proyectos")}>
           Proyectos
         </MagnetButton>
-        <MagnetButton onClick={() => scrollToSection("Formación")}>
+        <MagnetButton onClick={() => scrollToSection("Formacion")}>
           Formacion
         </MagnetButton>
         <MagnetButton onClick={() => scrollToSection("quien-soy")}>
           Quien Soy
         </MagnetButton>
-        
         <MagnetButton onClick={() => scrollToSection("recruiters")}>
-          Recruiters
-          🤖
+          Recruiters 🤖
         </MagnetButton>
       </div>
     </nav>
   );
 };
 
-export default Navigation; 
+export default Navigation;

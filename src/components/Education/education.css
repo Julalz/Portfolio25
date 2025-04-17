@@ -1,0 +1,35 @@
+.education-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.education-wrapper h2 {
+  background-color: #4588914f;
+  border-radius: 1rem;
+  font-family: ARCADECLASSIC;
+  letter-spacing: 4px;
+  font-size: 20px;
+  color: rgb(71, 71, 71);
+  margin-bottom: 1rem;
+}
+.education-wrapper li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 9px;
+  width: 420px;
+  background-color: #d6d0d091;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(168, 168, 168, 0.8);
+  text-align: center;
+}
+.education-wrapper p {
+  font-size: 15px;
+  text-align: left;
+  color: rgb(46, 46, 46);
+}

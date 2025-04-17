@@ -4,10 +4,12 @@ import AnimatedText from "./components/AnimatedText/AnimatedText";
 import Navigation from "./components/Navigation/Navigation";
 import RecruiterChat from "./components/RecruiterChat/RecruiterChat";
 import Slider from "./components/Slider-projects/Slider-projects";
+import { useEffect } from "react";
+import Education from "./components/Education/Education";
 
 function App() {
   return (
-    <div className="min-h-screen w-full overflow-x-hidden">
+    <div className="min-h-screen w-full overflow-x-hidden" id="inicio">
       <GradientBackground />
       <Navigation />
       <AnimatedText />
@@ -25,11 +27,14 @@ function App() {
       </section>
 
       <section id="Formacion" className="section">
-        <h2>Estudios</h2>
+        <Education />
       </section>
 
       <section id="quien-soy" className="section">
         <h2>Quién Soy</h2>
+      </section>
+      <section id="footer" className="section">
+        Hecho con ❤ por Juli
       </section>
     </div>
   );

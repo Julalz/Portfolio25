@@ -36,7 +36,7 @@ const GradientBackground = () => {
   };
 
   return (
-    <div className="fixed inset-0 w-full h-full overflow-hidden bg-[linear-gradient(40deg,rgb(108,0,162),rgb(0,17,82))]">
+    <div className="fixed inset-0 w-full h-full overflow-hidden bg-[linear-gradient(40deg,rgb(108,0,162),rgb(0,17,82))] z-0">
       <svg className="hidden">
         <defs>
           <filter id="blurMe">

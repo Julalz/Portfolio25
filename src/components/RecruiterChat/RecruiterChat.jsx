@@ -7,14 +7,17 @@ const RecruiterChat = () => {
   const [userMessageCount, setUserMessageCount] = useState(0);
   const messagesEndRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (hasInteracted && !loading) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, loading]);
 
   const handleDownloadCV = async () => {
     try {
@@ -72,6 +75,7 @@ const RecruiterChat = () => {
     e.preventDefault();
     if (!inputMessage.trim()) return;
 
+    setHasInteracted(true);
     const newMessage = {
       text: inputMessage,
       sender: "user",
