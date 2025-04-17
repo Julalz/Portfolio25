@@ -1,0 +1,39 @@
+.experiencie-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.experiencie-wrapper h2 {
+  font-family: ARCADECLASSIC;
+  letter-spacing: 4px;
+  font-size: 34px;
+  color: #a8b3b4cb;
+}
+.experiencie-wrapper ul li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 9px;
+  width: 420px;
+  background-color: #d6d0d091;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(168, 168, 168, 0.8);
+  margin-bottom: 3px;
+  text-align: left;
+  font-family: ARCADECLASSIC;
+  color: rgb(46, 46, 46);
+  letter-spacing: 1px;
+}
+
+.experiencie-container p {
+  text-align: center;
+  font-family: ARCADECLASSIC;
+  color: rgb(199, 199, 199);
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-top: 50px;
+}

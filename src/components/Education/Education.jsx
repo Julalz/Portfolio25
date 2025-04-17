@@ -21,16 +21,14 @@ const Education = () => {
           </p>
         </li>
         <li>
-          <h2>Spring Boot y Spring Cloud</h2>
-          <p></p>
-        </li>
-        <li>
-          <h2>Programa avanzado en Agile Project SCRUM</h2>
-          <p></p>
-        </li>
-        <li>
-          <h2>Google Adword y sus aplicaciones publicitaria</h2>
-          <p></p>
+          <h2>Bootcamp de Programacion Web Full stack</h2>
+          <p>
+            Más de 256 horas de clases lectivas, más 6 semanas para desarrollo
+            de proyectos tutelados, que figuran en esta certificación. <br />●
+            BACK-END: SQL y NODE.js - 80 HORAS <br />● FRONT-END: REACT.js - 64
+            HORAS <br />● LAYOUT: HTML y CSS - 48 HORAS <br />● JAVASCRIPT - 64
+            HORAS
+          </p>
         </li>
         <li>
           <h2>Three.js</h2>
@@ -45,24 +43,26 @@ const Education = () => {
             •Importaremos FBX , modelos desde otras páginas y softwares .<br />{" "}
             •Crear Colisiones entre objetos .
           </p>
+        </li>{" "}
+        <li>
+          <h2>Gestion de diseño en WordPress</h2>
+          <p>Diseño, gestión y creacion de paginas web</p>
         </li>
         <li>
-          <h2>Bootcamp de Programacion Web Full stack</h2>
-          <p>
-            Más de 256 horas de clases lectivas, más 6 semanas para desarrollo
-            de proyectos tutelados, que figuran en esta certificación. <br />●
-            BACK-END: SQL y NODE.js - 80 HORAS <br />● FRONT-END: REACT.js - 64
-            HORAS <br />● LAYOUT: HTML y CSS - 48 HORAS <br />● JAVASCRIPT - 64
-            HORAS
-          </p>
+          <h2>Spring Boot y Spring Cloud</h2>
+          <p></p>
+        </li>
+        <li>
+          <h2>Programa avanzado en Agile Project SCRUM</h2>
+          <p></p>
+        </li>
+        <li>
+          <h2>Google Adword y sus aplicaciones publicitaria</h2>
+          <p></p>
         </li>
         <li>
           <h2>Derecho informatico internacional</h2>
           <p></p>
-        </li>
-        <li>
-          <h2>Gestion de diseño en WordPress</h2>
-          <p>Diseño, gestión y creacion de paginas web</p>
         </li>
         <li></li>
       </ul>

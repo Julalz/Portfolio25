@@ -6,12 +6,15 @@ import RecruiterChat from "./components/RecruiterChat/RecruiterChat";
 import Slider from "./components/Slider-projects/Slider-projects";
 import { useEffect } from "react";
 import Education from "./components/Education/Education";
+import Experience from "./components/WorkExperience/WorkExperience";
+import SectionIndicator from "./components/SectionIndicator/SectionIndicator";
 
 function App() {
   return (
     <div className="min-h-screen w-full overflow-x-hidden" id="inicio">
       <GradientBackground />
       <Navigation />
+      <SectionIndicator />
       <AnimatedText />
       <section id="recruiters" className="section">
         <p className="chat-description">
@@ -30,12 +33,22 @@ function App() {
         <Education />
       </section>
 
-      <section id="quien-soy" className="section">
-        <h2>Quién Soy</h2>
+      <section id="experience" className="section">
+        <Experience />
       </section>
       <section id="footer" className="section">
-        Hecho con ❤ por Juli
+        Hecho con ❤ por Juli Alz
       </section>
+      <div className="julianime-container">
+        <p>
+          <SectionIndicator />
+        </p>
+        <img
+          src="/images/JuliAnime.png"
+          alt="JuliAnime"
+          className="julianime-image"
+        />
+      </div>
     </div>
   );
 }

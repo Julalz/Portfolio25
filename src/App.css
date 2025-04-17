@@ -14,10 +14,41 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   margin: 2rem;
-
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+#footer.section {
+  min-height: 3vh;
+  width: 300px;
+  background-color: transparent;
+  color: #9e9a96;
+  font-family: "ARCADECLASSIC", sans-serif;
+  font-size: 1.2rem;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+#experience.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: auto;
+  width: 97%;
+  /* max-width: 1200px; */
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 .chat-description {
   width: 50%;
   display: flex;
@@ -25,7 +56,41 @@
   text-align: center;
 }
 
-/* #Footer {
-  color: white;
-  background-color: brown;
-} */
+.julianime-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  animation: float 3s ease-in-out infinite;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.julianime-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  transition: transform 0.3s ease;
+}
+
+.julianime-image:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

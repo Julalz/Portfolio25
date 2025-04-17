@@ -74,8 +74,8 @@ const Navigation = () => {
         <MagnetButton onClick={() => scrollToSection("Formacion")}>
           Formacion
         </MagnetButton>
-        <MagnetButton onClick={() => scrollToSection("quien-soy")}>
-          Quien Soy
+        <MagnetButton onClick={() => scrollToSection("experience")}>
+          Experiencia Laboral
         </MagnetButton>
         <MagnetButton onClick={() => scrollToSection("recruiters")}>
           Recruiters 🤖
