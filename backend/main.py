@@ -166,7 +166,7 @@ class CVManager:
             "big data": "conocimientos_tecnicos_ampliados",
             "langchain": "conocimientos_tecnicos_ampliados",
             "integración frontend y backend": "conocimientos_tecnicos_ampliados",
-            "motivación IA engineer": "conocimientos_tecnicos_ampliados"
+            "motivación IA engineer": "conocimientos_tecnicos_ampliados",
         }
 
         relevant_category = None
@@ -225,7 +225,7 @@ class CVManager:
 
         if self.question_count > 2 and query.strip() == "2":
             asyncio.create_task(increment_cv_downloads(from_chat=True))
-            return "¡Perfecto! El CV se descargará en un momento. ¿Hay algo más en lo que pueda ayudarte?"
+            return "CV_DOWNLOAD"
 
         context = self._find_relevant_context(query)
 
@@ -299,6 +299,16 @@ async def chat(message: Message):
 
         response = cv_manager.get_response(message.message)
         print(f"Respuesta generada: {response}")
+
+        if response == "CV_DOWNLOAD":
+            pdf_filename = "cv_julian_dev_ia.pdf"
+            file_path = os.path.join("public", pdf_filename)
+            return FileResponse(
+                path=file_path,
+                filename="CV_Julian_Alzate.pdf",
+                media_type="application/pdf",
+            )
+
         return {"response": response}
     except Exception as e:
         print(f"Error en el endpoint /api/chat: {str(e)}")
